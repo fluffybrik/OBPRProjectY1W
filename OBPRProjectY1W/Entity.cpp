@@ -28,6 +28,7 @@ bool Entity::attackEnemy(Entity& enemy) {
 	int hit_chance = rand() % 100; // Generate random hit chance between 0 and 99
 
 	if (hit_chance < accuracy) { // If the attack hits
+		//take damage based on defending or not, check enemy's def and whatnot
 		enemy.takeDmg(Entity::attack);
 		return true;
 	}
