@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
+#include <fstream>
 #include "Player.h"
 #include "Enemy.h"
 #include "BigHeart.h"
@@ -21,16 +22,22 @@ class Game
 protected:
 	int score;
 	int level;
+	int eneDef;
 public:
 	Game();
 	int getScore() { return score; }
 	int getLevel () { return level; }
+	int getEneDef() { return eneDef; }
 	void setScore(int s) { score = s; }
 	void setLevel(int l) { level = l; }
+	void setEneDef(int e) { eneDef = e; }
 	int GamePlay();
 	int Battle();
 	int Outcome();
 	void ChooseItem(Player& p, BigHeart& bh, GreatSword& gs, HealthPot& hp, Opticals& o, ToughShield& ts);
+	void saveHighScore(int highScore);
+	int loadHighScore();
+
 };
 
 

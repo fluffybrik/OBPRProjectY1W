@@ -5,8 +5,11 @@
 
 class Enemy : public Entity
 {
+protected:
+	int level;
 public:
-
+	Enemy(); //adam is constructing this class
+		
 };
 
 #endif // !ENEMY.H

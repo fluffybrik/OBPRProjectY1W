@@ -9,7 +9,7 @@
 #include "ToughShield.h"
 
 class Player : public Entity, public BigHeart, public GreatSword, 
-	public HealthPot, public Opticals, public ToughShield
+	public HealthPot, public Opticals, public ToughShield //ive had other things in mind but ig we dont need it..????
 {
 protected:
 	int inv[5]; 	//item count in this order: hp,bigh,gs,ts,opt

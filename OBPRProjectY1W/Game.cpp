@@ -4,18 +4,18 @@ Game::Game() {
 	setLevel(1);
 }
 
-int Game::GamePlay() {
+int Game::GamePlay() { //adam's baby
 	return 0;
 }
 
-int Game::Battle() {
+int Game::Battle() { //andrew's baby
 	return 0;
 }
-int Game::Outcome() {
+int Game::Outcome() { //adam's? baby
 	return 0;
 }
 
-void Game::ChooseItem(Player& p, BigHeart& bh, GreatSword& gs, HealthPot& hp, Opticals& o, ToughShield& ts) {
+void Game::ChooseItem(Player& p, BigHeart& bh, GreatSword& gs, HealthPot& hp, Opticals& o, ToughShield& ts) { //nathan's baby
 	//check if there are any items?
 	int temp = 0;
 	for (int i = 0; i < 5; i++) {
@@ -59,4 +59,24 @@ void Game::ChooseItem(Player& p, BigHeart& bh, GreatSword& gs, HealthPot& hp, Op
 		break;
 	}
 	return;
+}
+
+//fuynabsudifnawd
+
+void Game::saveHighScore(int highScore) { //adam's baby
+	std::ofstream file("highscore.txt");
+	if (file.is_open()) {
+		file << highScore;
+		file.close();
+	}
+}
+
+int Game::loadHighScore() { //adam's baby
+	int highScore = 0;
+	std::ifstream file("highscore.txt");
+	if (file.is_open()) {
+		file >> highScore;
+		file.close();
+	}
+	return highScore;
 }

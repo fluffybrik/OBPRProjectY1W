@@ -34,10 +34,10 @@ bool gameOver() {
     return false;
 }
 
-bool gameStart() {
+bool gameStart() { //ben's baby
     cout << endl << "You have selected option 1. Starting game..." << endl
         << "pew pew shooot shoot AHHHHHHHHHHHH" << endl
-        << "game over...." << endl << endl;
+        << "game over...." << endl << endl; //ALL TEMPRORERYERYAERRAY
     return gameOver();
 }
 
