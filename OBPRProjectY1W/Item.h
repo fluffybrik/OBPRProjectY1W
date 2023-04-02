@@ -16,7 +16,6 @@ public:
 	void setCount(int c) { itemCount = c; }
 	void setRarity(int r) { rarity = r; }
 	void receiveItem();
-	virtual bool useItem(Entity&) = 0;
-	virtual void printItem() = 0;
+	virtual bool useItem(Entity*) = 0;
 };
 

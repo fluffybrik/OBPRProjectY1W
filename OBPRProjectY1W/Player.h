@@ -14,6 +14,7 @@ class Player : public Entity, public BigHeart, public GreatSword,
 protected:
 	int inv[5]; 	//item count in this order: hp,bigh,gs,ts,opt
 public:
+	Player(string);
 	void setInv(int i, int x) { inv[i] = x; }
 	int getInv(int i) { return inv[i]; }
 };

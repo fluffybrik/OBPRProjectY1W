@@ -1,4 +1,4 @@
-﻿  Game.cpp
-  mainFuncts.cpp
-  Generating Code...
+﻿  mainFuncts.cpp
+C:\Users\Skybr\source\repos\OBPRProjectY1W\OBPRProjectY1W\mainFuncts.cpp(34): warning C4715: 'gameOver': not all control paths return a value
+C:\Users\Skybr\source\repos\OBPRProjectY1W\OBPRProjectY1W\mainFuncts.cpp(60): warning C4715: 'gameStart': not all control paths return a value
   OBPRProjectY1W.vcxproj -> C:\Users\Skybr\source\repos\OBPRProjectY1W\x64\Debug\OBPRProjectY1W.exe

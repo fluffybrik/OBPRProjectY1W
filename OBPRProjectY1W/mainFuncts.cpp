@@ -14,7 +14,7 @@ int menu() {
 
 bool gameOver() {
     int gOSelection;
-    cout << "Hahahahaha loser. Would you like to try again?" << endl;
+    cout << "You have been defeated. Would you like to try again?" << endl;
     do {
         cout << "Make a selection: " << endl
             << "1. My revenge will be immediate. Allow me to battle again..." << endl
@@ -31,13 +31,31 @@ bool gameOver() {
             cout << "Invalid selection. Try again." << endl;
         }
     } while (gOSelection != 1 && gOSelection != 2);
-    return false;
 }
 
-bool gameStart() { //ben's baby
-    cout << endl << "You have selected option 1. Starting game..." << endl
-        << "pew pew shooot shoot AHHHHHHHHHHHH" << endl
-        << "game over...." << endl << endl; //ALL TEMPRORERYERYAERRAY
-    return gameOver();
+bool gameStart() { //nathan's baby
+    string pname;
+    cout << "\nWhat is your name?\n"
+        << "Name: ";
+    cin >> pname;
+    cout << "\n\n";
+    Player* p = new Player(pname);
+    Game* g = new Game();
+    int checkGame;
+    do {
+        checkGame = g->GamePlay(p);
+    } while (checkGame == 0);
+    
+    switch (checkGame) {
+    case 1:
+        delete p, g;
+        return true;
+        break;
+    case 2:
+        delete p, g;
+        return false;
+        break;
+    }
+
 }
 

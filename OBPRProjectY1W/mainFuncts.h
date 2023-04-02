@@ -6,8 +6,14 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include "Entity.h"
 #include "Game.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "BigHeart.h"
+#include "GreatSword.h"
+#include "HealthPot.h"
+#include "Opticals.h"
+#include "ToughShield.h"
 using namespace std;
 
 //prototypes

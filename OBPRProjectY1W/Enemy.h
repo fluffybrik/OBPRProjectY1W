@@ -8,8 +8,7 @@ class Enemy : public Entity
 protected:
 	int level;
 public:
-	Enemy(); //adam is constructing this class
-		
+	Enemy(string, int, int, int, int);
 };
 
 #endif // !ENEMY.H

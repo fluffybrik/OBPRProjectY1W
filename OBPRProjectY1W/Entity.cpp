@@ -23,16 +23,16 @@ void Entity::takeDmg(int dmg) {
 		health = 0;
 }
 
-bool Entity::attackEnemy(Entity& enemy) {
+bool Entity::attackEnemy(Entity* enemy) {
 	srand(time(0)); // Seed random number generator
 	int hit_chance = rand() % 100; // Generate random hit chance between 0 and 99
 
 	if (hit_chance < accuracy) { // If the attack hits
 		//take damage based on defending or not, check enemy's def and whatnot
-		if (enemy.getMove() == 2) {
-			enemy.takeDmg(Entity::attack * (enemy.getDefense() / 100));
+		if (enemy->getMove() == 2) {
+			enemy->takeDmg(Entity::attack * (enemy->getDefense() / 100));
 		}
-		enemy.takeDmg(Entity::attack);
+		enemy->takeDmg(Entity::attack);
 		return true;
 	}
 	else {
@@ -47,4 +47,12 @@ ostream& operator <<  (ostream& out, Entity& obj) {
 		<< "ACC: " << obj.getAccuracy() << '\n'
 		<< "DEF: " << obj.getDefense() << "\n\n";
 	return out;
+}
+
+void Entity::printEnt() {
+	cout << "~~~~" << Entity::getName() << "~~~~" << '\n'
+		<< "HP: " << Entity::getHealth() << '/' << Entity::getMaxHealth() << '\n'
+		<< "ATK: " << Entity::getAttack() << '\n'
+		<< "ACC: " << Entity::getAccuracy() << '\n'
+		<< "DEF: " << Entity::getDefense() << "\n\n";
 }

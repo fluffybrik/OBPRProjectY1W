@@ -9,10 +9,11 @@ protected:
     int hpBoost;
 public:
     HealthPot();
+    HealthPot(int c);
     HealthPot(int c, int hp, int r);
     int getHpBoost();
     void setHpBoost(int hp) { hpBoost = hp; }
-    bool useItem(Entity&);
+    virtual bool useItem(Entity*);
     friend ostream& operator<< (ostream& out, HealthPot& obj);
 };
 

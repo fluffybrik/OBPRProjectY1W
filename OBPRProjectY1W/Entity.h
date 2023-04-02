@@ -35,9 +35,10 @@ public:
 	void setDefense(int de) { defense = de; }
 	void setMove(int m) { move = m; }
 	void takeDmg(int);
-	bool attackEnemy(Entity& enemy);
+	bool attackEnemy(Entity* enemy);
 	//how the heck do i overload cout again imma check
-	friend ostream& operator<< (ostream& out, Entity& obj);
+	friend ostream& operator<< (ostream& out, Entity& obj); //this is not working
+	void printEnt();
 };
 
 #endif // !ENTITY_H

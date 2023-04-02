@@ -6,6 +6,8 @@
 #include <time.h>
 #include <iostream>
 #include <fstream>
+#include <cmath>
+#include "mainFuncts.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "BigHeart.h"
@@ -26,16 +28,16 @@ protected:
 public:
 	Game();
 	int getScore() { return score; }
-	int getLevel () { return level; }
+	int getLevel() { return level; }
 	int getEneDef() { return eneDef; }
 	void setScore(int s) { score = s; }
 	void setLevel(int l) { level = l; }
 	void setEneDef(int e) { eneDef = e; }
-	int GamePlay();
-	int Battle();
-	int Outcome();
-	void ChooseItem(Player& p, BigHeart& bh, GreatSword& gs, HealthPot& hp, Opticals& o, ToughShield& ts);
-	void saveHighScore(int highScore);
+	int GamePlay(Player*);
+	int Battle(Player*);
+	int Outcome(Player* player, Enemy* enemy);
+	bool ChooseItem(Player* p, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts);
+	void saveHighScore();
 	int loadHighScore();
 
 };

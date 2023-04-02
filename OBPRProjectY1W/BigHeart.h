@@ -10,10 +10,11 @@ protected:
 	int maxHpBoost;
 public:
 	BigHeart();
+	BigHeart(int c);
 	BigHeart(int c, int mHpB, int r);
 	int getMaxHpBoost() { return maxHpBoost; }
 	void setMaxHpBoost(int mHpB) { maxHpBoost = mHpB; }
-	bool useItem(Entity&);
+	bool useItem(Entity*);
 	friend ostream& operator<< (ostream& out, BigHeart& obj);
 };
 

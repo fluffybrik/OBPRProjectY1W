@@ -9,10 +9,11 @@ protected:
 	int defBoost;
 public:
 	ToughShield();
+	ToughShield(int c);
 	ToughShield(int c, int defB, int r);
 	int getDefBoost() { return defBoost; }
 	void setDefBoost(int defB) { defBoost = defB; }
-	bool useItem(Entity&);
+	bool useItem(Entity*);
 	friend ostream& operator<< (ostream& out, ToughShield& obj);
 };
 

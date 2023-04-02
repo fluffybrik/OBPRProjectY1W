@@ -7,18 +7,25 @@ GreatSword::GreatSword() {
 	setAtkBoost(10);
 	setCount(0);
 }
+
+GreatSword::GreatSword(int c) {
+	setRarity(20);
+	setAtkBoost(10);
+	setCount(c);
+}
+
 GreatSword::GreatSword(int c, int atkB, int r) {
 	setAtkBoost(atkB);
 	setRarity(r);
 	setCount(c);
 }
 
-bool GreatSword::useItem(Entity& e) {
+bool GreatSword::useItem(Entity* e) {
 	if (GreatSword::getCount() <= 0) { //checks if theres 0 items, if so, then dont use.
 		return false; //"Cant use it! No items.."
 	}
 	else {
-		e.setAttack(e.getAttack() + GreatSword::getAtkBoost());
+		e->setAttack(e->getAttack() + GreatSword::getAtkBoost());
 		setCount(getCount() - 1);
 		cout << "You've equipped a Greater Sword!\n+" << GreatSword::getAtkBoost() << " ATK\n\n";
 		return true; //item is used

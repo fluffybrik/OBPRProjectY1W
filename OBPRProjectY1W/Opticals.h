@@ -9,10 +9,11 @@ protected:
 	int accBoost;
 public:
 	Opticals();
+	Opticals(int c);
 	Opticals(int c, int accB, int r);
 	int getAccBoost() { return accBoost; }
 	void setAccBoost(int accB) { accBoost = accB; }
-	bool useItem(Entity&);
+	bool useItem(Entity*);
 	friend ostream& operator<< (ostream& out, Opticals& obj);
 };
 
