@@ -12,13 +12,6 @@ int menu() {
     return selection;
 }
 
-bool gameStart() {
-    cout << endl << "You have selected option 1. Starting game..." << endl
-        << "pew pew shooot shoot AHHHHHHHHHHHH" << endl
-        << "game over...." << endl << endl;
-    return gameOver();
-}
-
 bool gameOver() {
     int gOSelection;
     cout << "Hahahahaha loser. Would you like to try again?" << endl;
@@ -40,3 +33,11 @@ bool gameOver() {
     } while (gOSelection != 1 && gOSelection != 2);
     return false;
 }
+
+bool gameStart() {
+    cout << endl << "You have selected option 1. Starting game..." << endl
+        << "pew pew shooot shoot AHHHHHHHHHHHH" << endl
+        << "game over...." << endl << endl;
+    return gameOver();
+}
+

@@ -29,10 +29,22 @@ bool Entity::attackEnemy(Entity& enemy) {
 
 	if (hit_chance < accuracy) { // If the attack hits
 		//take damage based on defending or not, check enemy's def and whatnot
+		if (enemy.getMove() == 2) {
+			enemy.takeDmg(Entity::attack * (enemy.getDefense() / 100));
+		}
 		enemy.takeDmg(Entity::attack);
 		return true;
 	}
 	else {
 		return false;
 	}
+}
+
+ostream& operator <<  (ostream& out, Entity& obj) {
+	out << "~~~~" << obj.getName() << "~~~~" << '\n'
+		<< "HP: " << obj.getHealth() << '/' << obj.getMaxHealth() << '\n'
+		<< "ATK: " << obj.getAttack() << '\n'
+		<< "ACC: " << obj.getAccuracy() << '\n'
+		<< "DEF: " << obj.getDefense() << "\n\n";
+	return out;
 }

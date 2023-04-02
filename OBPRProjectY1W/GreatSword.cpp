@@ -1,37 +1,34 @@
-#include "HealthPot.h"
+#include "GreatSword.h"
 #include<iostream>
 using namespace std;
 
-HealthPot::HealthPot() {
-	rarity = 20;
-	hpBoost = 30;
+GreatSword::GreatSword() {
+	setRarity(20);
+	setAtkBoost(10);
 	setCount(0);
 }
-HealthPot::HealthPot(int c, int hp, int r) {
-	hpBoost = hp;
-	rarity = r;
+GreatSword::GreatSword(int c, int atkB, int r) {
+	setAtkBoost(atkB);
+	setRarity(r);
 	setCount(c);
 }
-int HealthPot::getHpBoost() {
-	return hpBoost;
-}
 
-bool HealthPot::useItem(Entity& e) {
-	if (HealthPot::getCount() < 0) {//checks if theres 0 items, if so, then dont use.
+bool GreatSword::useItem(Entity& e) {
+	if (GreatSword::getCount() <= 0) { //checks if theres 0 items, if so, then dont use.
 		return false; //"Cant use it! No items.."
 	}
 	else {
-		e.setHealth(e.getHealth() + HealthPot::getHpBoost());
+		e.setAttack(e.getAttack() + GreatSword::getAtkBoost());
 		setCount(getCount() - 1);
-		cout << "You've drank a Health Potion!\n+" << HealthPot::getHpBoost() << " HP\n\n";
+		cout << "You've equipped a Greater Sword!\n+" << GreatSword::getAtkBoost() << " ATK\n\n";
 		return true; //item is used
 	}
 }
 
-ostream& operator<< (ostream& out, HealthPot& obj) {
+ostream& operator<< (ostream& out, GreatSword& obj) {
 	//remember to make an exeption to not display anything when there are zero items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	cout << obj.getCount() << " HEALTH POTION\n"
-		<< "\t Strawberry flavored...\n"
-		<< "\t Restores " << obj.getHpBoost() << " HP when consumed.\n\n";
+	cout << obj.getCount() << " GREATER SWORD\n"
+		<< "\t It's somehow sharper than the last one!\n"
+		<< "\t Adds " << obj.getAtkBoost() << " ATK to your character when used.\n\n";
 	return out;
 }

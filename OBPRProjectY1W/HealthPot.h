@@ -1,16 +1,19 @@
 #pragma once
+#ifndef HEALTHPOT_H
+#define HEALTHPOT_H
+
 #include "Item.h"
-class HealthPot :
-    public Item
+class HealthPot : public Item
 {
 protected:
     int hpBoost;
 public:
     HealthPot();
     HealthPot(int c, int hp, int r);
-    int GetHpBoost();
-    
-    void SetHpBoost(int hp) { hpBoost = hp; }
-    
+    int getHpBoost();
+    void setHpBoost(int hp) { hpBoost = hp; }
+    bool useItem(Entity&);
+    friend ostream& operator<< (ostream& out, HealthPot& obj);
 };
 
+#endif // !HEALTHPOT_H                                                                   
