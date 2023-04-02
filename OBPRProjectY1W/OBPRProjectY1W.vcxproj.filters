@@ -13,42 +13,96 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Items">
+      <UniqueIdentifier>{083e835a-915a-4024-b1c1-c6266379891a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Items">
+      <UniqueIdentifier>{6e8d78b6-d9ee-427a-86e8-7fdf5b674638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity">
+      <UniqueIdentifier>{555ae0c3-9b2b-4798-887f-972252b20895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{39ae402a-81f2-48bd-a8a9-4d1a44b2ed20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameFuncts">
+      <UniqueIdentifier>{de90d2db-667a-4cbf-a910-3a966981900e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameFuncts">
+      <UniqueIdentifier>{5da93bb4-077b-4104-b980-0bfb33192439}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mainFuncts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
     <ClCompile Include="HealthPot.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="mainFuncts.cpp">
+      <Filter>Source Files\GameFuncts</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\GameFuncts</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\GameFuncts</Filter>
+    </ClCompile>
+    <ClCompile Include="GreatSword.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ToughShield.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Opticals.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="BigHeart.cpp">
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mainFuncts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Items</Filter>
     </ClInclude>
     <ClInclude Include="HealthPot.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\GameFuncts</Filter>
+    </ClInclude>
+    <ClInclude Include="mainFuncts.h">
+      <Filter>Header Files\GameFuncts</Filter>
+    </ClInclude>
+    <ClInclude Include="GreatSword.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ToughShield.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Opticals.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="BigHeart.h">
+      <Filter>Header Files\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

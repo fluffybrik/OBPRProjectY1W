@@ -1,6 +1,7 @@
 #pragma once
-#include <iostream>
+#include<iostream>
 #include<string>
+#include "Entity.h"
 using namespace std;
 class Item
 {
@@ -10,12 +11,12 @@ protected:
 public:
 	Item();
 	Item( int c, int r);
-	int GetCount() { return itemCount; }
-	int GetRarity() { return rarity; }
-	void SetCount(int c) { itemCount = c; }
-	void SetRarity(int r) { rarity = r; }
+	int getCount() { return itemCount; }
+	int getRarity() { return rarity; }
+	void setCount(int c) { itemCount = c; }
+	void setRarity(int r) { rarity = r; }
 	void receiveItem();
-	virtual bool useItem() = 0;
+	virtual bool useItem(Entity&) = 0;
 	virtual void printItem() = 0;
 };
 

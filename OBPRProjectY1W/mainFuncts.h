@@ -14,7 +14,6 @@ using namespace std;
 int menu();
 bool gameStart();
 bool gameOver();
-void quit();
 
 
 #endif // !MAINFUNCTS_H

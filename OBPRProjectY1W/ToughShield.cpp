@@ -1,37 +1,34 @@
-#include "HealthPot.h"
+#include "ToughShield.h"
 #include<iostream>
 using namespace std;
 
-HealthPot::HealthPot() {
-	rarity = 20;
-	hpBoost = 30;
+ToughShield::ToughShield() {
+	setRarity(20);
+	setDefBoost(4);
 	setCount(0);
 }
-HealthPot::HealthPot(int c, int hp, int r) {
-	hpBoost = hp;
-	rarity = r;
+ToughShield::ToughShield(int c, int defB, int r) {
+	setDefBoost(defB);
+	setRarity(r);
 	setCount(c);
 }
-int HealthPot::getHpBoost() {
-	return hpBoost;
-}
 
-bool HealthPot::useItem(Entity& e) {
-	if (HealthPot::getCount() < 0) {//checks if theres 0 items, if so, then dont use.
+bool ToughShield::useItem(Entity& e) {
+	if (ToughShield::getCount() <= 0) { //checks if theres 0 items, if so, then dont use.
 		return false; //"Cant use it! No items.."
 	}
 	else {
-		e.setHealth(e.getHealth() + HealthPot::getHpBoost());
+		e.setDefense(e.getDefense() + ToughShield::getDefBoost());
 		setCount(getCount() - 1);
-		cout << "You've drank a Health Potion!\n+" << HealthPot::getHpBoost() << " HP\n\n";
+		cout << "You've equipped a Tougher Shield!\n+" << ToughShield::getDefBoost() << " DEF\n\n";
 		return true; //item is used
 	}
 }
 
-ostream& operator<< (ostream& out, HealthPot& obj) {
+ostream& operator<< (ostream& out, ToughShield& obj) {
 	//remember to make an exeption to not display anything when there are zero items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	cout << obj.getCount() << " HEALTH POTION\n"
-		<< "\t Strawberry flavored...\n"
-		<< "\t Restores " << obj.getHpBoost() << " HP when consumed.\n\n";
+	cout << obj.getCount() << " TOUGHER SHIELD\n"
+		<< "\t Now in Yellow(TM)!\n"
+		<< "\t Adds " << obj.getDefBoost() << " DEF to your character when used.\n\n";
 	return out;
 }
