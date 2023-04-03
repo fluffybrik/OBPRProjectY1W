@@ -24,13 +24,16 @@ bool gameOver() {
         switch (gOSelection) {
         case 1:
             return true;
+            break;
         case 2:
             cout << "You have selected option 2." << endl;
             return false;
+            break;
         default:
             cout << "Invalid selection. Try again." << endl;
         }
     } while (gOSelection != 1 && gOSelection != 2);
+    return false;
 }
 
 bool gameStart() { //nathan's baby
@@ -39,6 +42,7 @@ bool gameStart() { //nathan's baby
         << "Name: ";
     cin >> pname;
     cout << "\n\n";
+    cout << "A new battle begins!\n";
     Player* p = new Player(pname);
     Game* g = new Game();
     int checkGame;
@@ -48,11 +52,9 @@ bool gameStart() { //nathan's baby
     
     switch (checkGame) {
     case 1:
-        delete p, g;
         return true;
         break;
     case 2:
-        delete p, g;
         return false;
         break;
     }

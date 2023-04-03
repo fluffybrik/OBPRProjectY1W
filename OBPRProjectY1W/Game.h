@@ -34,8 +34,8 @@ public:
 	void setLevel(int l) { level = l; }
 	void setEneDef(int e) { eneDef = e; }
 	int GamePlay(Player*);
-	int Battle(Player*);
-	int Outcome(Player* player, Enemy* enemy);
+	int Battle(Player*, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts);
+	int Outcome(Player* player, Enemy* enemy, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts);
 	bool ChooseItem(Player* p, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts);
 	void saveHighScore();
 	int loadHighScore();

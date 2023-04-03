@@ -12,6 +12,7 @@ Opticals::Opticals(int c) {
 	setRarity(20);
 	setAccBoost(10);
 	setCount(c);
+	cout << "init!\n";
 }
 
 Opticals::Opticals(int c, int defB, int r) {
@@ -34,7 +35,7 @@ bool Opticals::useItem(Entity* e) {
 
 ostream& operator<< (ostream& out, Opticals& obj) {
 	//remember to make an exeption to not display anything when there are zero items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	cout << obj.getCount() << " MAPPER'S OPTICALS\n"
+	out << obj.getCount() << " MAPPER'S OPTICALS\n"
 		<< "\t Four-eyes!\n"
 		<< "\t Adds " << obj.getAccBoost() << " ACC to your character when used.\n\n";
 	return out;

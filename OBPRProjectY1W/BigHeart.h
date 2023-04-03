@@ -16,6 +16,7 @@ public:
 	void setMaxHpBoost(int mHpB) { maxHpBoost = mHpB; }
 	bool useItem(Entity*);
 	friend ostream& operator<< (ostream& out, BigHeart& obj);
+	void printItem();
 };
 
 #endif

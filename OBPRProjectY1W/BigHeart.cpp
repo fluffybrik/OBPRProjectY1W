@@ -12,6 +12,7 @@ BigHeart::BigHeart(int c) {
 	setRarity(20);
 	setMaxHpBoost(5);
 	setCount(c);
+	cout << "init!\n";
 }
 
 BigHeart::BigHeart(int c, int defB, int r) {
@@ -38,8 +39,12 @@ bool BigHeart::useItem(Entity* e) {
 
 ostream& operator<< (ostream& out, BigHeart& obj) {
 	//remember to make an exeption to not display anything when there are zero items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	cout << obj.getCount() << " BIGGER HEART\n"
+	out << obj.getCount() << " BIGGER HEART\n"
 		<< "\t *applying Bigger Heart does not constitute in increased kindness.*\n"
 		<< "\t Increases maximum HP by " << obj.getMaxHpBoost() << " points when surgically implanted.\n\n";
 	return out;
+}
+
+void BigHeart::printItem() {
+	return;
 }

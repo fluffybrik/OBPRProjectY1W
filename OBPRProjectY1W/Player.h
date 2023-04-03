@@ -12,7 +12,7 @@ class Player : public Entity, public BigHeart, public GreatSword,
 	public HealthPot, public Opticals, public ToughShield //ive had other things in mind but ig we dont need it..????
 {
 protected:
-	int inv[5] = {0,0,0,0,0}; 	//item count in this order: hp,bigh,gs,ts,opt
+	int inv[5]; 	//item count in this order: hp,bigh,gs,ts,opt
 public:
 	Player(string);
 	void setInv(int i, int x) { inv[i] = x; }

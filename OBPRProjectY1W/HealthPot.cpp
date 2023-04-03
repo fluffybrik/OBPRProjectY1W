@@ -12,6 +12,7 @@ HealthPot::HealthPot(int c) {
 	setRarity(20);
 	setHpBoost(10);
 	setCount(c);
+	cout << "init!\n";
 }
 
 HealthPot::HealthPot(int c, int hp, int r) {
@@ -37,7 +38,7 @@ bool HealthPot::useItem(Entity* e) {
 
 ostream& operator<< (ostream& out, HealthPot& obj) {
 	//remember to make an exeption to not display anything when there are zero items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	cout << obj.getCount() << " HEALTH POTION\n"
+	out << obj.getCount() << " HEALTH POTION\n"
 		<< "\t Strawberry flavored...\n"
 		<< "\t Restores " << obj.getHpBoost() << " HP when consumed.\n\n";
 	return out;

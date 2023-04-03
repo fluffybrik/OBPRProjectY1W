@@ -11,24 +11,47 @@ int Game::GamePlay(Player* player) { //adam's baby
 	ToughShield* ts = new ToughShield(player->getInv(3));
 	Opticals* o = new Opticals(player->getInv(4));
 	int outcome;
-	outcome = Battle(player); //executes battle function
+	outcome = Battle(player, bh, gs, hp, o ,ts); //executes battle function
 	switch (outcome) {
 	case 1: { //winners case
 		//save score, reward item...
 		Game::setLevel(getLevel() + 1);
 		Game::setScore(Game::getScore() + 100);
-
-		hp->receiveItem();
-		bh->receiveItem();
-		gs->receiveItem();
-		ts->receiveItem();
-		o->receiveItem();
+		bool chkRI = false;
+		chkRI = hp->receiveItem();
+		if (chkRI == true) {
+			player->setInv(0, player->getInv(0) + 1);
+			cout << "You've recieved a Health Potion!\n";
+			chkRI = false;
+		}
+		chkRI = bh->receiveItem();
+		if (chkRI == true) {
+			player->setInv(1, player->getInv(1) + 1);
+			cout << "You've recieved a Bigger Heart!\n";
+			chkRI = false;
+		}
+		chkRI = gs->receiveItem();
+		if (chkRI == true) {
+			player->setInv(2, player->getInv(2) + 1);
+			cout << "You've recieved a Greater Sword!\n";
+			chkRI = false;
+		}
+		chkRI = ts->receiveItem();
+		if (chkRI == true) {
+			player->setInv(3, player->getInv(3) + 1);
+			cout << "You've recieved a Tougher Shield!\n";
+			chkRI = false;
+		}
+		chkRI = o->receiveItem();
+		if (chkRI == true) {
+			player->setInv(4, player->getInv(4) + 1);
+			cout << "You've recieved Opticals!\n";
+			chkRI = false;
+		}
 		//add item to inv
 
 		cout << "VICTORY! You have defeated the monster.\n"
 			<< "But alas... another one arrives.\n\n";
-
-		
 
 		return 0;
 		break;
@@ -40,8 +63,9 @@ int Game::GamePlay(Player* player) { //adam's baby
 		delete player;
 
 		cout << "You have been SLAIN...\n";
-
-		switch (gameOver()) { //"Try Again?" function
+		bool chkGO;
+		chkGO = gameOver();
+		switch (chkGO) { //"Try Again?" function
 			case true:
 				return 1;
 				break;
@@ -56,7 +80,7 @@ int Game::GamePlay(Player* player) { //adam's baby
 	
 }
 
-int Game::Battle(Player* player) { //andrew's baby
+int Game::Battle(Player* player, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts) { //andrew's baby
 	//initialize stats!!!!
 	string eName = "Goblin";
 	int eLevel = Game::getLevel();
@@ -72,6 +96,7 @@ int Game::Battle(Player* player) { //andrew's baby
 	}
 
 	Enemy* enemy = new Enemy(eName, eMHp, eAtk, eAcc, eDef); // allocate a new enemy
+	cout << "An enemy approaches!\n";
 
 	int outcome = 0; // initialize 0
 	do {
@@ -107,11 +132,10 @@ int Game::Battle(Player* player) { //andrew's baby
 
 		// randomize the enemy's choice
 		int enemyMove = rand() % 2 + 1; // 1 for att 2 for defen
-		cout << enemyMove << "emove" << endl;																 //debug
 		enemy->setMove(enemyMove);
 
 		//put it into pointers
-		outcome = Outcome(player, enemy);
+		outcome = Outcome(player, enemy, bh, gs, hp, o, ts);
 
 	} while (outcome == 0);// Do loop will loop while the return value of Outcome() is 0
 
@@ -122,14 +146,16 @@ int Game::Battle(Player* player) { //andrew's baby
 	return outcome; // Battle() will return Outcome()'s value when condition is broken
 }
 
-int Game::Outcome(Player* player, Enemy* enemy) { //adam's? baby //TAKE ITEM CLASSES TOO(?)
+int Game::Outcome(Player* player, Enemy* enemy, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts) { //adam's? baby //TAKE ITEM CLASSES TOO(?)
 	//initalize items
-	HealthPot* hp = new HealthPot(player->getInv(0));
+	/*HealthPot* hp = new HealthPot(player->getInv(0)); //OLD
 	BigHeart* bh = new BigHeart(player->getInv(1));
 	GreatSword* gs = new GreatSword(player->getInv(2));
 	ToughShield* ts = new ToughShield(player->getInv(3));
-	Opticals* o = new Opticals(player->getInv(4));
+	Opticals* o = new Opticals(player->getInv(4)); */
 
+
+	cout << endl;
 
 	//execute the player move using switch:
 	switch (player->getMove()) {
@@ -138,9 +164,6 @@ int Game::Outcome(Player* player, Enemy* enemy) { //adam's? baby //TAKE ITEM CLA
 		int tempEHP;
 		tempEHP = enemy->getHealth();
 		pAtkCheck = player->attackEnemy(enemy);
-		if (enemy->getMove() == 2) {
-			cout << "The enemy sets up for a block...\n";
-		}
 		if (pAtkCheck == true) {
 			cout << "You attack and hit the enemy with " << tempEHP - enemy->getHealth() << " damage\n\n";
 		}
@@ -155,6 +178,9 @@ int Game::Outcome(Player* player, Enemy* enemy) { //adam's? baby //TAKE ITEM CLA
 		break;
 	}
 	
+	if (enemy->getMove() == 2) {
+		cout << "The enemy sets up for a block...\n";
+	}
 
 	//check for enemy vitals
 	if (enemy->getHealth() == 0) {
@@ -164,18 +190,18 @@ int Game::Outcome(Player* player, Enemy* enemy) { //adam's? baby //TAKE ITEM CLA
 		
 	//enemy's turn
 
+	if (player->getMove() == 2) {
+		cout << "You set up for a block...\n";
+	}
+
 	switch (enemy->getMove()) {
 	case 1: // Attack
 		bool eAtkCheck;
 		int tempPHP;
 		tempPHP = player->getHealth();
 		eAtkCheck = enemy->attackEnemy(player);
-		
-		if (enemy->getMove() == 2) {
-			cout << "You set up for a block...\n";
-		}
 		if (eAtkCheck == true) {
-			cout << "It attacks! You take " << tempPHP - player->getHealth() << " damage.\n\n";
+			cout << "It attacks! You take " << tempPHP - player->getHealth() << " damage.\n";
 		}
 		else {
 			cout << "It misses!\n";
@@ -189,20 +215,26 @@ int Game::Outcome(Player* player, Enemy* enemy) { //adam's? baby //TAKE ITEM CLA
 		return 2;
 	}
 
+	cout << endl;
+
 	return 0;// if no one dies
 }
 
 bool Game::ChooseItem(Player* p, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts) { //nathan's baby
 	//check if there are any items?
-	int temp = 0;
+	/*int temp = 0; //OLD
 	for (int i = 0; i < 5; i++) {
-		p->getInv(i);//haha i knew we were gonna use this member, gotta remember to use it in the main program
+		temp =+ p->getInv(i);//haha i knew we were gonna use this member, gotta remember to use it in the main program
 	}
 	if (temp <= 0) {
 		cout << "You have no items!\n";
 		return false;//if there are no items, return false
-	}
+	}*/
 
+	if (bh->getCount() == 0 && gs->getCount() == 0 && hp->getCount() == 0 && o->getCount() == 0 && ts->getCount() == 0) {
+		cout << "You have no items!\n";
+		return false;//if there are no items, return false
+	}
 
 	int selection;
 	cout << "What item would you like to use?\n";

@@ -12,6 +12,7 @@ GreatSword::GreatSword(int c) {
 	setRarity(20);
 	setAtkBoost(10);
 	setCount(c);
+	cout << "init!\n";
 }
 
 GreatSword::GreatSword(int c, int atkB, int r) {
@@ -34,7 +35,7 @@ bool GreatSword::useItem(Entity* e) {
 
 ostream& operator<< (ostream& out, GreatSword& obj) {
 	//remember to make an exeption to not display anything when there are zero items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	cout << obj.getCount() << " GREATER SWORD\n"
+	out << obj.getCount() << " GREATER SWORD\n"
 		<< "\t It's somehow sharper than the last one!\n"
 		<< "\t Adds " << obj.getAtkBoost() << " ATK to your character when used.\n\n";
 	return out;

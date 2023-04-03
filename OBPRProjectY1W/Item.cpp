@@ -9,10 +9,13 @@ Item::Item( int c, int r)
 	rarity = r;
 }
 
-void Item::receiveItem() {
-	srand(time(0));
-	int val = rand() % 100;
-	if (val < rarity) // if val is less than rarity, item recieved; the higher the rarity, the less rare it is
-		cout << "You recieved an item!";
+bool Item::receiveItem() {
+	int val = rand() % 100; // Generate random hit chance between 0 and 99
+	if (val < rarity) { // if val is less than rarity, item recieved; the higher the rarity, the less rare it is
 		itemCount++;
+		return true;
+	}
+	else
+		itemCount++;
+		return true;
 }

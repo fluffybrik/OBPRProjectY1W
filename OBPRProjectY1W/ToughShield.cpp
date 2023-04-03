@@ -3,7 +3,7 @@
 using namespace std;
 
 ToughShield::ToughShield() {
-	setRarity(20);
+	setRarity(100);
 	setDefBoost(4);
 	setCount(0);
 }
@@ -12,6 +12,7 @@ ToughShield::ToughShield(int c) {
 	setRarity(20);
 	setDefBoost(10);
 	setCount(c);
+	cout << "init!\n";
 }
 
 ToughShield::ToughShield(int c, int defB, int r) {
@@ -34,7 +35,7 @@ bool ToughShield::useItem(Entity* e) {
 
 ostream& operator<< (ostream& out, ToughShield& obj) {
 	//remember to make an exeption to not display anything when there are zero items                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-	cout << obj.getCount() << " TOUGHER SHIELD\n"
+	out << obj.getCount() << " TOUGHER SHIELD\n"
 		<< "\t Now in Yellow(TM)!\n"
 		<< "\t Adds " << obj.getDefBoost() << " DEF to your character when used.\n\n";
 	return out;

@@ -15,7 +15,7 @@ public:
 	int getRarity() { return rarity; }
 	void setCount(int c) { itemCount = c; }
 	void setRarity(int r) { rarity = r; }
-	void receiveItem();
+	bool receiveItem();
 	virtual bool useItem(Entity*) = 0;
 };
 

@@ -24,9 +24,7 @@ void Entity::takeDmg(int dmg) {
 }
 
 bool Entity::attackEnemy(Entity* enemy) {
-	srand((unsigned) time(NULL)); // Seed random number generator
 	int hit_chance = rand() % 100; // Generate random hit chance between 0 and 99
-	cout << hit_chance << "hitchance" << endl;																	//debug
 
 	if (hit_chance < accuracy) { // If the attack hits
 		//take damage based on defending or not, check enemy's def and whatnot
