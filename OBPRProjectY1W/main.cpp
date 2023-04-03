@@ -10,7 +10,7 @@ int main()
 {
     int selection;
     bool tryAgain;
-    std::cout << "unga bunga bonanza\n";
+    std::cout << "COMMAND LINE WARRIORS\n";
     while (true) {
         selection = menu();
         switch (selection) {

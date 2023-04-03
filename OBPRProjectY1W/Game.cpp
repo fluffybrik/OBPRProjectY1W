@@ -1,18 +1,17 @@
 #include "Game.h"
 Game::Game() {
 	setScore(0);
-	setLevel(1);
+	setLevel(0);
 }
 
 int Game::GamePlay(Player* player) { //adam's baby
-	Game::setLevel(0);
 	HealthPot* hp = new HealthPot(player->getInv(0));
 	BigHeart* bh = new BigHeart(player->getInv(1));
 	GreatSword* gs = new GreatSword(player->getInv(2));
 	ToughShield* ts = new ToughShield(player->getInv(3));
 	Opticals* o = new Opticals(player->getInv(4));
 	int outcome;
-	outcome = Battle(player);
+	outcome = Battle(player); //executes battle function
 	switch (outcome) {
 	case 1: { //winners case
 		//save score, reward item...
@@ -61,10 +60,16 @@ int Game::Battle(Player* player) { //andrew's baby
 	//initialize stats!!!!
 	string eName = "Goblin";
 	int eLevel = Game::getLevel();
-	int eMHp = 100 + (100 * (eLevel/4));
-	int eAtk = 20 + (20 * (eLevel / 4));
-	int eAcc = 75 + (15 * round((pow(-1.25,-(eLevel))))); //using equation -1.25^(-x)+1
-	int eDef = 50 + (50 * round((pow(-1.05, -(eLevel)))));//using equation -1.05^(-x)+1
+	int eMHp = 100.00 + (100.00 * eLevel/4);
+	int eAtk = 20.00 + (20.00 * eLevel / 4);
+	int eAcc = 75.00 + (eLevel * 2);
+		if (eAcc > 100) {
+			eAcc = 100;
+		}
+	int eDef = 50.00 + (eLevel * 4);
+	if (eDef > 100) {
+		eDef = 100;
+	}
 
 	Enemy* enemy = new Enemy(eName, eMHp, eAtk, eAcc, eDef); // allocate a new enemy
 
@@ -102,6 +107,8 @@ int Game::Battle(Player* player) { //andrew's baby
 
 		// randomize the enemy's choice
 		int enemyMove = rand() % 2 + 1; // 1 for att 2 for defen
+		cout << enemyMove << "emove" << endl;																 //debug
+		enemy->setMove(enemyMove);
 
 		//put it into pointers
 		outcome = Outcome(player, enemy);
@@ -127,13 +134,15 @@ int Game::Outcome(Player* player, Enemy* enemy) { //adam's? baby //TAKE ITEM CLA
 	//execute the player move using switch:
 	switch (player->getMove()) {
 	case 1://attack
-		bool atkcheck; //checks if the attack lands or not
-		atkcheck = player->attackEnemy(enemy);
+		bool pAtkCheck; //checks if the attack lands or not
+		int tempEHP;
+		tempEHP = enemy->getHealth();
+		pAtkCheck = player->attackEnemy(enemy);
 		if (enemy->getMove() == 2) {
-			cout << "The enemy blocks your attack and blocks some damage!\n";
+			cout << "The enemy sets up for a block...\n";
 		}
-		if (atkcheck == true) {
-			cout << "You attack and hit the enemy with " << player->getAttack() << " damage\n\n";
+		if (pAtkCheck == true) {
+			cout << "You attack and hit the enemy with " << tempEHP - enemy->getHealth() << " damage\n\n";
 		}
 		else {
 			cout << "You missed your attack!\n";
@@ -154,10 +163,23 @@ int Game::Outcome(Player* player, Enemy* enemy) { //adam's? baby //TAKE ITEM CLA
 	}
 		
 	//enemy's turn
+
 	switch (enemy->getMove()) {
 	case 1: // Attack
-		enemy->attackEnemy(player);
-		cout << "It attacks! You take " << enemy->getAttack() << " damage.\n\n";
+		bool eAtkCheck;
+		int tempPHP;
+		tempPHP = player->getHealth();
+		eAtkCheck = enemy->attackEnemy(player);
+		
+		if (enemy->getMove() == 2) {
+			cout << "You set up for a block...\n";
+		}
+		if (eAtkCheck == true) {
+			cout << "It attacks! You take " << tempPHP - player->getHealth() << " damage.\n\n";
+		}
+		else {
+			cout << "It misses!\n";
+		}
 		break;
 	}
 

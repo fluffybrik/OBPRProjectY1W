@@ -24,13 +24,14 @@ void Entity::takeDmg(int dmg) {
 }
 
 bool Entity::attackEnemy(Entity* enemy) {
-	srand(time(0)); // Seed random number generator
+	srand((unsigned) time(NULL)); // Seed random number generator
 	int hit_chance = rand() % 100; // Generate random hit chance between 0 and 99
+	cout << hit_chance << "hitchance" << endl;																	//debug
 
 	if (hit_chance < accuracy) { // If the attack hits
 		//take damage based on defending or not, check enemy's def and whatnot
-		if (enemy->getMove() == 2) {
-			enemy->takeDmg(Entity::attack * (enemy->getDefense() / 100));
+		if (enemy->getMove() == 2) { //if they defend....
+			enemy->takeDmg(Entity::attack *  (enemy->getDefense() / 100));
 		}
 		enemy->takeDmg(Entity::attack);
 		return true;

@@ -4,7 +4,7 @@ using namespace std;
 
 Opticals::Opticals() {
 	setRarity(20);
-	setAccBoost(4);
+	setAccBoost(3);
 	setCount(0);
 }
 

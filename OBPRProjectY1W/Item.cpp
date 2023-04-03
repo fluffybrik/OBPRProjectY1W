@@ -13,5 +13,6 @@ void Item::receiveItem() {
 	srand(time(0));
 	int val = rand() % 100;
 	if (val < rarity) // if val is less than rarity, item recieved; the higher the rarity, the less rare it is
+		cout << "You recieved an item!";
 		itemCount++;
 }

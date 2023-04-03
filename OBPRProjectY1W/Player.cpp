@@ -4,6 +4,6 @@ Player::Player(string n) {
 	setHealth(120);
 	setMaxHealth(120);
 	setAttack(20);
-	setAccuracy(75);
+	setAccuracy(80);
 	setDefense(75);
 }
