@@ -15,6 +15,7 @@ public:
 	void setDefBoost(int defB) { defBoost = defB; }
 	bool useItem(Entity*);
 	friend ostream& operator<< (ostream& out, ToughShield& obj);
+	void printItem();
 };
 
 #endif

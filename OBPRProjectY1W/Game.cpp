@@ -4,12 +4,7 @@ Game::Game() {
 	setLevel(0);
 }
 
-int Game::GamePlay(Player* player) { //adam's baby
-	HealthPot* hp = new HealthPot(player->getInv(0));
-	BigHeart* bh = new BigHeart(player->getInv(1));
-	GreatSword* gs = new GreatSword(player->getInv(2));
-	ToughShield* ts = new ToughShield(player->getInv(3));
-	Opticals* o = new Opticals(player->getInv(4));
+int Game::GamePlay(Player* player, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts) { //adam's baby
 	int outcome;
 	outcome = Battle(player, bh, gs, hp, o ,ts); //executes battle function
 	switch (outcome) {
@@ -17,6 +12,8 @@ int Game::GamePlay(Player* player) { //adam's baby
 		//save score, reward item...
 		Game::setLevel(getLevel() + 1);
 		Game::setScore(Game::getScore() + 100);
+		cout << "\n\n\nVICTORY! You have defeated the monster.\n+100 Points\n";
+			//add item to inv
 		bool chkRI = false;
 		chkRI = hp->receiveItem();
 		if (chkRI == true) {
@@ -48,11 +45,9 @@ int Game::GamePlay(Player* player) { //adam's baby
 			cout << "You've recieved Opticals!\n";
 			chkRI = false;
 		}
-		//add item to inv
-
-		cout << "VICTORY! You have defeated the monster.\n"
-			<< "But alas... another one arrives.\n\n";
-
+		
+		cout << "But alas... another one arrives.\n\n";
+		system("pause");
 		return 0;
 		break;
 	}
@@ -62,7 +57,7 @@ int Game::GamePlay(Player* player) { //adam's baby
 		saveHighScore();
 		delete player;
 
-		cout << "You have been SLAIN...\n";
+		cout << "\n\n\nYou have been SLAIN...\n";
 		bool chkGO;
 		chkGO = gameOver();
 		switch (chkGO) { //"Try Again?" function
@@ -82,7 +77,7 @@ int Game::GamePlay(Player* player) { //adam's baby
 
 int Game::Battle(Player* player, BigHeart* bh, GreatSword* gs, HealthPot* hp, Opticals* o, ToughShield* ts) { //andrew's baby
 	//initialize stats!!!!
-	string eName = "Goblin";
+	string eName;
 	int eLevel = Game::getLevel();
 	int eMHp = 100.00 + (100.00 * eLevel/4);
 	int eAtk = 20.00 + (20.00 * eLevel / 4);
@@ -95,8 +90,50 @@ int Game::Battle(Player* player, BigHeart* bh, GreatSword* gs, HealthPot* hp, Op
 		eDef = 100;
 	}
 
+	int bossNum = 0;
+	bossNum = (rand() % 3);
+	if (bossNum == 0)
+		eName = "Impersonator";
+	else if (bossNum == 1)
+		eName = "Rick, Destroyer of Souls";
+	else if (bossNum == 2)
+		eName = "Goblin";
+	else
+		eName = "Brick";
+
 	Enemy* enemy = new Enemy(eName, eMHp, eAtk, eAcc, eDef); // allocate a new enemy
-	cout << "An enemy approaches!\n";
+	cout << "LEVEL " << getLevel() + 1  << endl;
+	cout << enemy->getName() << " approaches!\n";
+
+	//graphics, prod. ben
+
+	cout << "---------------------------------------------------------" << endl << endl;
+
+	if (bossNum == 0) {
+		cout << " o/" << "                                              " << ",''," << endl;
+		cout << "/|_" << "                                             " << "(__)||" << endl;
+		cout << "/  |" << "                                            " << "|_|_|" << endl;
+		cout << "---------------------------------------------------------" << endl;
+	}
+	else if (bossNum == 1) {
+		cout << " o/" << "                                              " << ",''," << endl;
+		cout << "/|_" << "                                              " << "=-=|" << endl;
+		cout << "/  |" << "                                             " << "|__|" << endl;
+		cout << "---------------------------------------------------------" << endl;
+	}
+	else if (bossNum == 2) {
+		cout << " o/" << "                                              " << "////" << endl;
+		cout << "/|_" << "                                              " << "0_0}" << endl;
+		cout << "/  |" << "                                             " << "(__)" << endl;
+		cout << "---------------------------------------------------------" << endl;
+	}
+	else if (bossNum == 3) {
+		cout << " o/" << "                                              " << " __ " << endl;
+		cout << "/|_" << "                                              " << "/' |" << endl;
+		cout << "/  |" << "                                             " << "/__|" << endl;
+		cout << "---------------------------------------------------------" << endl;
+	}
+
 
 	int outcome = 0; // initialize 0
 	do {
@@ -110,9 +147,14 @@ int Game::Battle(Player* player, BigHeart* bh, GreatSword* gs, HealthPot* hp, Op
 		// ask the player what their move is,
 
 		int Move = 0;
+		bool chkItem = false;//chcks if user has items
 		do {
 
-			cout << "Select your move: ";
+			cout << "WHAT IS YOUR MOVE? \n"
+				<< "1. ATTACK\n"
+				<< "2. DEFEND\n"
+				<< "3. USE ITEM\n"
+				<< "Selection: ";
 			cin >> Move;
 			switch (Move) {
 			case 1:
@@ -122,13 +164,24 @@ int Game::Battle(Player* player, BigHeart* bh, GreatSword* gs, HealthPot* hp, Op
 				player->setMove(2);
 				break;
 			case 3:
-				player->setMove(3);
+				if (bh->getCount() == 0 && gs->getCount() == 0 && hp->getCount() == 0 && o->getCount() == 0 && ts->getCount() == 0) {
+					cout << "\n\nYou have no items!\n\n";
+					chkItem = false;
+				}
+				else {
+					player->setMove(3);
+					ChooseItem(player, bh, gs, hp, o, ts);
+					system("pause");
+					chkItem = false;
+				}
 				break;
 			default:
 				cout << "Invalid move. Please select 1 (attack), 2 (defend), or 3 (use item).\n\n";
 				break;
 			}
-		} while (Move < 1 || Move > 3);
+			if (Move == 1 || Move == 2)
+				chkItem = true;
+		} while (Move < 1 || Move > 3 || chkItem == false);
 
 		// randomize the enemy's choice
 		int enemyMove = rand() % 2 + 1; // 1 for att 2 for defen
@@ -156,6 +209,16 @@ int Game::Outcome(Player* player, Enemy* enemy, BigHeart* bh, GreatSword* gs, He
 
 
 	cout << endl;
+	
+	//check for blocks
+
+	if (enemy->getMove() == 2) {
+		cout << enemy->getName() << " sets up for a block...\n\n";
+	}
+
+	if (player->getMove() == 2) {
+		cout << "You set up for a block...\n\n";
+	}
 
 	//execute the player move using switch:
 	switch (player->getMove()) {
@@ -168,7 +231,7 @@ int Game::Outcome(Player* player, Enemy* enemy, BigHeart* bh, GreatSword* gs, He
 			cout << "You attack and hit the enemy with " << tempEHP - enemy->getHealth() << " damage\n\n";
 		}
 		else {
-			cout << "You missed your attack!\n";
+			cout << "You missed your attack!\n\n";
 		}
 		break;
 
@@ -178,21 +241,14 @@ int Game::Outcome(Player* player, Enemy* enemy, BigHeart* bh, GreatSword* gs, He
 		break;
 	}
 	
-	if (enemy->getMove() == 2) {
-		cout << "The enemy sets up for a block...\n";
-	}
 
 	//check for enemy vitals
 	if (enemy->getHealth() == 0) {
-		cout << "The enemy falls!\n";
+		cout << enemy->getName() << " falls!\n";
 		return 1;
 	}
 		
 	//enemy's turn
-
-	if (player->getMove() == 2) {
-		cout << "You set up for a block...\n";
-	}
 
 	switch (enemy->getMove()) {
 	case 1: // Attack
@@ -201,22 +257,21 @@ int Game::Outcome(Player* player, Enemy* enemy, BigHeart* bh, GreatSword* gs, He
 		tempPHP = player->getHealth();
 		eAtkCheck = enemy->attackEnemy(player);
 		if (eAtkCheck == true) {
-			cout << "It attacks! You take " << tempPHP - player->getHealth() << " damage.\n";
+			cout << enemy->getName() << " attacks! You take " << tempPHP - player->getHealth() << " damage.\n";
 		}
 		else {
-			cout << "It misses!\n";
+			cout << enemy->getName() << " misses!\n";
 		}
 		break;
 	}
 
 	//check for player vitals
 	if (player->getHealth() == 0) {
-		cout << "You are defeated...\n";
 		return 2;
 	}
 
 	cout << endl;
-
+	system("pause");
 	return 0;// if no one dies
 }
 
@@ -239,15 +294,15 @@ bool Game::ChooseItem(Player* p, BigHeart* bh, GreatSword* gs, HealthPot* hp, Op
 	int selection;
 	cout << "What item would you like to use?\n";
 	if (hp->getCount() > 0)
-		cout << "1. " << hp;
+		hp->printItem();
 	if (gs->getCount() > 0)
-		cout << "2. " << gs;
+		gs->printItem();
 	if (ts->getCount() > 0)
-		cout << "3. " << ts;
+		ts->printItem();
 	if (o->getCount() > 0)
-		cout << "4. " << o;
+		o->printItem();
 	if (bh->getCount() > 0)
-		cout << "5. " << bh;
+		bh->printItem();
 	cout << "Your selection: ";
 	cin >> selection;
 	//there's nothing protecting against wrong choices, lets hope the player doesnt do that

@@ -15,6 +15,7 @@ public:
 	void setAtkBoost(int atkB) { atkBoost = atkB; }
 	bool useItem(Entity*);
 	friend ostream& operator<< (ostream& out, GreatSword& obj);
+	void printItem();
 };
 
 #endif

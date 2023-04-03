@@ -4,15 +4,14 @@ using namespace std;
 
 Opticals::Opticals() {
 	setRarity(20);
-	setAccBoost(3);
+	setAccBoost(10);
 	setCount(0);
 }
 
 Opticals::Opticals(int c) {
 	setRarity(20);
 	setAccBoost(10);
-	setCount(c);
-	cout << "init!\n";
+	setCount(0);
 }
 
 Opticals::Opticals(int c, int defB, int r) {
@@ -22,7 +21,7 @@ Opticals::Opticals(int c, int defB, int r) {
 }
 
 bool Opticals::useItem(Entity* e) {
-	if (Opticals::getCount() <= 0) { //checks if theres 0 items, if so, then dont use.
+	if (getCount() <= 0) { //checks if theres 0 items, if so, then dont use.
 		return false; //"Cant use it! No items.."
 	}
 	else {
@@ -39,4 +38,10 @@ ostream& operator<< (ostream& out, Opticals& obj) {
 		<< "\t Four-eyes!\n"
 		<< "\t Adds " << obj.getAccBoost() << " ACC to your character when used.\n\n";
 	return out;
+}
+
+void Opticals::printItem() {
+	cout << "4. " << getCount() << "x MAPPER'S OPTICALS\n"
+		<< "\t Four-eyes!\n"
+		<< "\t Adds " << getAccBoost() << " ACC to your character when used.\n\n";
 }

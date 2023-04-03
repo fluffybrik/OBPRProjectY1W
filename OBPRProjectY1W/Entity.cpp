@@ -25,13 +25,17 @@ void Entity::takeDmg(int dmg) {
 
 bool Entity::attackEnemy(Entity* enemy) {
 	int hit_chance = rand() % 100; // Generate random hit chance between 0 and 99
-
+	float tempdmg;
 	if (hit_chance < accuracy) { // If the attack hits
 		//take damage based on defending or not, check enemy's def and whatnot
 		if (enemy->getMove() == 2) { //if they defend....
-			enemy->takeDmg(Entity::attack *  (enemy->getDefense() / 100));
+			tempdmg = attack - (attack * (enemy->getDefense() / 100.00));
+			tempdmg = round(tempdmg);
+			enemy->takeDmg(tempdmg);
+			return true;
+
 		}
-		enemy->takeDmg(Entity::attack);
+		enemy->takeDmg(attack);
 		return true;
 	}
 	else {

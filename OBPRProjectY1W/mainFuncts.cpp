@@ -14,10 +14,10 @@ int menu() {
 
 bool gameOver() {
     int gOSelection;
-    cout << "You have been defeated. Would you like to try again?" << endl;
+    cout << "Would you like to try again?" << endl;
     do {
         cout << "Make a selection: " << endl
-            << "1. My revenge will be immediate. Allow me to battle again..." << endl
+            << "1. My revenge will be immediate. Allow me to battle once more..." << endl
             << "2. Return to main menu." << endl
             << "Selection: ";
         cin >> gOSelection;
@@ -42,12 +42,21 @@ bool gameStart() { //nathan's baby
         << "Name: ";
     cin >> pname;
     cout << "\n\n";
-    cout << "A new battle begins!\n";
+    cout << "You enter a deep, dark, and dank dungeon, when suddenly...\n"
+        <<"A MONSTER APPEARS!!!\n"
+        <<"You draw your sword and brace for the bloodshed to come...\n\n";
+
     Player* p = new Player(pname);
     Game* g = new Game();
+    HealthPot* hp = new HealthPot(p->getInv(0));
+    BigHeart* bh = new BigHeart(p->getInv(1));
+    GreatSword* gs = new GreatSword(p->getInv(2));
+    ToughShield* ts = new ToughShield(p->getInv(3));
+    Opticals* o = new Opticals(p->getInv(4));
     int checkGame;
+    system("pause");
     do {
-        checkGame = g->GamePlay(p);
+        checkGame = g->GamePlay(p, bh, gs, hp, o, ts);
     } while (checkGame == 0);
     
     switch (checkGame) {

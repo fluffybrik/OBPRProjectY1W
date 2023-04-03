@@ -15,6 +15,7 @@ public:
 	void setAccBoost(int accB) { accBoost = accB; }
 	bool useItem(Entity*);
 	friend ostream& operator<< (ostream& out, Opticals& obj);
+	void printItem();
 };
 
 #endif

@@ -15,6 +15,7 @@ public:
     void setHpBoost(int hp) { hpBoost = hp; }
     virtual bool useItem(Entity*);
     friend ostream& operator<< (ostream& out, HealthPot& obj);
+    void printItem();
 };
 
 #endif // !HEALTHPOT_H                                                                   

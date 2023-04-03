@@ -11,8 +11,7 @@ GreatSword::GreatSword() {
 GreatSword::GreatSword(int c) {
 	setRarity(20);
 	setAtkBoost(10);
-	setCount(c);
-	cout << "init!\n";
+	setCount(0);
 }
 
 GreatSword::GreatSword(int c, int atkB, int r) {
@@ -22,13 +21,13 @@ GreatSword::GreatSword(int c, int atkB, int r) {
 }
 
 bool GreatSword::useItem(Entity* e) {
-	if (GreatSword::getCount() <= 0) { //checks if theres 0 items, if so, then dont use.
+	if (getCount() <= 0) { //checks if theres 0 items, if so, then dont use.
 		return false; //"Cant use it! No items.."
 	}
 	else {
-		e->setAttack(e->getAttack() + GreatSword::getAtkBoost());
+		e->setAttack(e->getAttack() + getAtkBoost());
 		setCount(getCount() - 1);
-		cout << "You've equipped a Greater Sword!\n+" << GreatSword::getAtkBoost() << " ATK\n\n";
+		cout << "You've equipped a Greater Sword!\n+" << getAtkBoost() << " ATK\n\n";
 		return true; //item is used
 	}
 }
@@ -39,4 +38,10 @@ ostream& operator<< (ostream& out, GreatSword& obj) {
 		<< "\t It's somehow sharper than the last one!\n"
 		<< "\t Adds " << obj.getAtkBoost() << " ATK to your character when used.\n\n";
 	return out;
+}
+
+void GreatSword::printItem() {
+	cout << "2. " << getCount() << "x GREATER SWORD\n"
+		<< "\t It's somehow sharper than the last one!\n"
+		<< "\t Adds " << getAtkBoost() << " ATK to your character when used.\n\n";
 }
