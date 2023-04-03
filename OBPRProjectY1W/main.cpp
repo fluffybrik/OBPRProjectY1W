@@ -10,7 +10,7 @@ int main()
 {
     int selection;
     bool tryAgain;
-    std::cout << "COMMAND LINE WARRIORS\n";
+    cout << "COMMAND LINE WARRIORS\n";
     while (true) {
         selection = menu();
         switch (selection) {
@@ -22,6 +22,7 @@ int main()
         case 2:
             cout << endl << "You have selected option 2." << endl
                 << "'Till next time, warrior." << endl;
+            system("pause");
             return 0;
             break;
         default:
